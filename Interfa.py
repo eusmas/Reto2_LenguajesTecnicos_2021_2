@@ -6,14 +6,17 @@ arduino=serial.Serial('COM1', 9600)
 
 def orden(numero):
     dato = str(numero)
-    arduino.write(dato.encode())
+    dato2=tiempo.get()
+    if int(dato2) <= 9:
+        arduino.write(dato.encode() + dato2.encode() )
+        #lectu=str(arduino.readline())
+        nivelactual.delete(0,END)
+        #nivelactual.insert(0,lectu)
+    else:
+        nivelactual.delete(0,END)
+        nivelactual.insert(0,"Tiempo incorrecto")
     time.sleep(1)
-
-def orden2(numero):
-    dato = str(numero)
-    arduino.write(dato.encode())
-    time.sleep(1)
-    return dato
+    print(dato.encode() + dato2.encode() )
 
 def lectura():
     lectu=str(arduino.readline())
@@ -36,34 +39,13 @@ Button(root,text="3",command=lambda:orden(3)).grid(row=5,column=1,sticky=W+E)
 Button(root,text="2",command=lambda:orden(2)).grid(row=6,column=1,sticky=W+E)
 Button(root,text="1",command=lambda:orden(1)).grid(row=7,column=1,sticky=W+E)
 
-Button(root,text="Leer",command=lambda:set_text("animal")).grid(row=4,column=3,columnspan=3,sticky=W+E)
-
-#Label y lectura
-Label(root,text="Nivel actual").grid(row=5,column=3,columnspan=3,sticky=W+E)
-#nivelactual=Entry(root).grid(row=6,column=3,columnspan=3,sticky=W+E)
+#Label
+Label(root,text="Piso actual").grid(row=4,column=3,columnspan=1,sticky=W+E)
 nivelactual=Entry(root)
-nivelactual.grid(row=6,column=3,columnspan=3,sticky=W+E)
-#nivelactual.pack()
-#######################
-def set_text(text):
-    nivelactual.delete(0,END)
-    nivelactual.insert(0,text)
-    return
-
-#b1 = Button(win,text="animal",command=lambda:set_text("animal"))
-#b1.pack()
-
-#b2 = Button(win,text="plant",command=lambda:set_text("plant"))
-#b2.pack()
-
-#######################3
-
-#print ("Ingrese 1 para encender el led y 0 para apaga el led")
-#dato = str(input())
-#arduino.write(dato.encode())
+nivelactual.grid(row=5,column=3,columnspan=1,sticky=W+E)
+Label(root,text="Tiempo puerta (0-9)s").grid(row=6,column=3,columnspan=1,sticky=W+E)
+tiempo=Entry(root)
+tiempo.grid(row=7,column=3,columnspan=1,sticky=W+E)
+#print(tiempo)
 
 root.mainloop()
-
-    #print ("Ingrese 1 para encender el led y 0 para apaga el led")
-    #dato = str(input())
-    #arduino.write(dato.encode())
