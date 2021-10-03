@@ -9,6 +9,12 @@ def orden(numero):
     arduino.write(dato.encode())
     time.sleep(1)
 
+def orden2(numero):
+    dato = str(numero)
+    arduino.write(dato.encode())
+    time.sleep(1)
+    return dato
+
 def lectura():
     lectu=str(arduino.readline())
     print (lectu)
@@ -20,19 +26,37 @@ root = Tk()
 root.title("Reto #2")
 root.config(width=500,height=500)
 
+#Encabezado
 Label(root,text="Reto#2 Lenguajes Tecnicos 2021-2",bg="blue").grid(row=0,column=0,columnspan=5,sticky=W+E)
 Label(root,text="Escoja el piso al cual desplazarse").grid(row=2,column=0,columnspan=5,sticky=W+E)
 
+#Botones
 Button(root,text="4",command=lambda:orden(4)).grid(row=4,column=1,sticky=W+E)
 Button(root,text="3",command=lambda:orden(3)).grid(row=5,column=1,sticky=W+E)
 Button(root,text="2",command=lambda:orden(2)).grid(row=6,column=1,sticky=W+E)
 Button(root,text="1",command=lambda:orden(1)).grid(row=7,column=1,sticky=W+E)
 
-Button(root,text="Leer",command=lambda:lectura()).grid(row=4,column=3,columnspan=3,sticky=W+E)
+Button(root,text="Leer",command=lambda:set_text("animal")).grid(row=4,column=3,columnspan=3,sticky=W+E)
 
-
+#Label y lectura
 Label(root,text="Nivel actual").grid(row=5,column=3,columnspan=3,sticky=W+E)
-nivelactual=Entry(root).grid(row=6,column=3,columnspan=3,sticky=W+E)
+#nivelactual=Entry(root).grid(row=6,column=3,columnspan=3,sticky=W+E)
+nivelactual=Entry(root)
+nivelactual.grid(row=6,column=3,columnspan=3,sticky=W+E)
+#nivelactual.pack()
+#######################
+def set_text(text):
+    nivelactual.delete(0,END)
+    nivelactual.insert(0,text)
+    return
+
+#b1 = Button(win,text="animal",command=lambda:set_text("animal"))
+#b1.pack()
+
+#b2 = Button(win,text="plant",command=lambda:set_text("plant"))
+#b2.pack()
+
+#######################3
 
 #print ("Ingrese 1 para encender el led y 0 para apaga el led")
 #dato = str(input())

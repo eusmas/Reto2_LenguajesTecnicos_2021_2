@@ -14,6 +14,8 @@ def lectura():
     time.sleep(1)
 
     
-print ("Ingrese 1 para encender el led y 0 para apaga el led")
+print ("Ingrese un numero del 1 al 4")
 dato = str(input())
 orden(dato)
+
+
