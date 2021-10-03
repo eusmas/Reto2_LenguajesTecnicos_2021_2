@@ -9,9 +9,9 @@ def orden(numero):
     dato2=tiempo.get()
     if int(dato2) <= 9:
         arduino.write(dato.encode() + dato2.encode() )
-        #lectu=str(arduino.readline())
+        lectu=str(arduino.readline())##
         nivelactual.delete(0,END)
-        #nivelactual.insert(0,lectu)
+        nivelactual.insert(0,lectu)##
     else:
         nivelactual.delete(0,END)
         nivelactual.insert(0,"Tiempo incorrecto")
